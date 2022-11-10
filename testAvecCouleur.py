@@ -105,53 +105,36 @@ if __name__=="__main__":
     # Separer la variable qualitative 
     Y_train = X_train.copy()
     
-    Y_train = Y.drop(Y.columns[[0,1,2,]],axis=1)
-    X_train = X.drop(X.columns[[3]],axis=1)
+    Y_train = Y_train.drop(Y_train.columns[[0,1,2,]],axis=1)
+    X_train = X_train.drop(X_train.columns[[3]],axis=1)
 
     Y_test = X_test.copy()
 
-    Y_test = Y_test.drop(Y.columns[[0,1,2,]],axis=1)
-    X_test = X_test.drop(X.columns[[3]],axis=1)
+    Y_test = Y_test.drop(Y_test.columns[[0,1,2,]],axis=1)
+    X_test = X_test.drop(X_test.columns[[3]],axis=1)
     
-    
+    #Normalise les Y
+    Y_train=(Y_train-Y_train.min())/(Y_train.max()-Y_train.min())
+    Y_test=(Y_test-Y_test.min())/(Y_test.max()-Y_test.min())
 
-
-    exit()
-    # # load the dataset
-    # dataset = loadtxt('Dataset.csv', delimiter=',')
-    # dataset_test = loadtxt('Dataset-test.csv',delimiter=',')
-    # split into input (X) and output (y) variables
-    X = dataset[:,0:4]
-
-    y = dataset[:,4]
-
-    X_test = dataset_test[:,0:4]
-    y_test = dataset_test[:,4]
-
-    #Passage les donnes qui sont en string en chiffre
 
     # define the keras model
     model = Sequential()
-    model.add(Dense(12, input_shape=(4,), activation='relu'))
+    model.add(Dense(12, input_shape=(3,), activation='relu'))
     model.add(Dense(8, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
     # compile the keras model
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     # fit the keras model on the dataset
-    model.fit(X, y, epochs=150, batch_size=10, verbose=0)
+    model.fit(X_train, Y_train, epochs=150, batch_size=10, verbose=0)
     # make class predictions with the model
-    predictions = (model.predict(X_test) > 0.5).astype(int)
+    predictions = model.predict(X_test)
+    print(predictions)
     # evaluate the keras model
-    _, accuracy = model.evaluate(X, y)
+    _, accuracy = model.evaluate(X_train, Y_train)
     print('Accuracy: %.2f' % (accuracy*100))
     # summarize the first 5 cases
-    compte = 0
-    for i in range(69):
-        if(predictions[i] == y_test[i]):
-            compte+=1
-        print('%s => %d (expected %d)' % (X_test[i].tolist(), predictions[i], y_test[i]))
 
-    print("Compte = " + str(compte))
 
 
 
