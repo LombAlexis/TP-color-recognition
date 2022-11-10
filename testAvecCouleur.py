@@ -100,28 +100,20 @@ if __name__=="__main__":
     dataset['Value'] = le.transform(dataset.get("Value"))
 
     # Séparation des données de test, des données d'entrainement
-    X_train, X_test = train_test_split(dataset,test_size=0.8)
+    X_train, X_test = train_test_split(dataset,test_size=0.2)
 
+    # Separer la variable qualitative 
+    Y_train = X_train.copy()
+    
+    Y_train = Y.drop(Y.columns[[0,1,2,]],axis=1)
+    X_train = X.drop(X.columns[[3]],axis=1)
 
+    Y_test = X_test.copy()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Y_test = Y_test.drop(Y.columns[[0,1,2,]],axis=1)
+    X_test = X_test.drop(X.columns[[3]],axis=1)
+    
+    
 
 
     exit()
