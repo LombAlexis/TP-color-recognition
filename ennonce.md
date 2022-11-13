@@ -1,5 +1,5 @@
 
-# TP - Enoncé - Reconnaissance de couleurs 🏳‍🌈
+# TP - Énoncé - Reconnaissance de couleurs 🏳‍🌈
 
 ## 0 - Objectifs
 
@@ -7,11 +7,11 @@ L'objectif de ce TP est de réaliser une application Python de reconnaissance de
 
 Quelques exemples de fonctionnement de l'application :
 
-| R (in)   | G (in)   | B (in)   | Couleur la plus proche (out) |
-|----------|----------|----------|------------------------------|
-| 240      | 5        | 2        | 🟥 Rouge                    |
-| 255      | 5        | 250      | 🟪 Fuschia                  |
-| 0        | 120      | 0        | 🟩 Vert                     |
+| R (in) | G (in) | B (in) | Couleur la plus proche (out) |
+|--------|--------|--------|------------------------------|
+| 240    | 5      | 2      | 🟥 Rouge                     |
+| 255    | 5      | 250    | 🟪 Fuschia                   |
+| 0      | 120    | 0      | 🟩 Vert                      |
 
 L'idée ici est donc de concevoir un premier programme qui va générer un dataset de couleurs, puis un second intégrant un réseau de neuronnes qui va apprendre à reconnaître les couleurs par lui-même, avec un taux d'erreur minime. Enfin, vous comparerez la performance des deux programmes pour déterminer lequel est le plus efficace.
 
